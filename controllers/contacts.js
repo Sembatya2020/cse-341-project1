@@ -1,5 +1,5 @@
 const mongodb = require('../data/database');
-const ObjectId = require('mongodb').ObjectId;
+const ObjectId  = require('mongodb').ObjectId;
 
 //#swagger.tags=['contacts']
 const getAll = async(req, res) => {
@@ -42,12 +42,13 @@ const createUser = async (req, res) =>{
 
 const updateUser = async (req, res) =>{
     //#swagger.tags=['contacts']
-    const userId = newObjectId(res.params.id);
+    const userId = new ObjectId(req.params.id);
     const user = {
-            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
-            name: req.body.name,
-            ipaddress: req.body.ipaddress
+            favoriteColor: req.body.favoriteColor,
+            birthday: req.body.birthday
     };
     const response = await mongodb.getDatabase().db().collection('contacts').replaceOne({_id: userId}, user);
     if (response.modifiedCount > 0) {
@@ -60,7 +61,7 @@ const updateUser = async (req, res) =>{
 const deleteUser = async (req, res) => {
     //#swagger.tags=['contacts']
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection(contacts).deleteOne({_id: userId});
+    const response = await mongodb.getDatabase().db().collection('contacts').deleteOne({_id: userId});
     if (response.deletedCount > 0){
         res.status(204).send();
     }else{
