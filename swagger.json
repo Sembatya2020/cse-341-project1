@@ -118,16 +118,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
                   "example": "any"
                 },
                 "email": {
                   "example": "any"
                 },
-                "name": {
+                "favoriteColor": {
                   "example": "any"
                 },
-                "ipaddress": {
+                "birthday": {
                   "example": "any"
                 }
               }
